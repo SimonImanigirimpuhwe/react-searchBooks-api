@@ -1,26 +1,13 @@
 import express from 'express';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+import cors from 'cors';
 import authRouter from './route/auth';
-
-dotenv.config();
+import './model/db';
 
 const app = express();
 app.use(express.json());
-app.use('/users', authRouter);
+app.use(cors());
+app.use('/', authRouter);
 
 
-const options = {
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useNewUrlParser: true,
-}
-const url = process.env.DATABASE_URL;
-
-mongoose
-    .connect(url, options)
-    .then(() => console.log('MongoDB connected...'))
-    .catch((err) => {throw new Error(err)})
 
 export default app;
