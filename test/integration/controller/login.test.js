@@ -4,7 +4,6 @@ import server from '../../../src/app';
 import {url} from '../../../src/model/db';
 
 
-
 describe('login', () => {
     beforeAll((done) => {
         mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true},
