@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
-dotenv.config();
+dotenv.config();       
 
 const generateToken = (data) => {
     const { email, _id } = data;

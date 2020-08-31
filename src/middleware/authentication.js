@@ -10,7 +10,7 @@ const authentication = (req, res, next) => {
         const secretKey = process.env.SECRETE_KEY;
         const decoded = jwt.verify(token, secretKey);
         req.user = decoded;
-        return next();
+        next();
     }catch (err) {
         return res.status(400).json({err: 'Invalid token'})
     }

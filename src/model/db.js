@@ -1,8 +1,7 @@
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+import config from '../../config/config';
 
 
-dotenv.config();
 
 const options = {
     useUnifiedTopology: true,
@@ -10,10 +9,13 @@ const options = {
     useFindAndModify: false,
     useNewUrlParser: true,
 }
-const url = process.env.DATABASE_URL;
+const {
+    db: { port, host, name}
+} = config;
+ export const url = `mongodb://${host}:${port}/${name}?authSource=admin` || config.db.database_url;
+ export default mongoose
+    .connect(url, options)
+    .then(() => console.log('MongoDB connected...'))
+    .catch((err) => {throw new Error(err)})
 
-export default mongoose
-                .connect(url, options)
-                .then(() => console.log('MongoDB connected...'))
-                .catch((err) => {throw new Error(err)})
 

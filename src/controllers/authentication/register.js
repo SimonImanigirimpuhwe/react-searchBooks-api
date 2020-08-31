@@ -1,17 +1,18 @@
-import bcrypt from 'bcryptjs';
 import User from '../../model/user';
+import hashedPass from '../../helper/bcryptPass';
+
 
 const registerController = async(req, res) => {
     const { email, password, name } =req.body;
     const emailExist = await User.findOne({email});
     if(emailExist) return res.status(400).json({error: 'User registered before'});
 
-    const salt = await bcrypt.genSalt(10)
-    const hashedPass = await bcrypt.hash(password, salt)
+        const hash = await hashedPass(password);
+        
     const user = new User({
         name,
         email,
-        password:hashedPass
+        password:hash
     })
     try{
         const newUser = await user.save();

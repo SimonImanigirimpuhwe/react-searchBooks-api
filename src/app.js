@@ -8,6 +8,9 @@ app.use(express.json());
 app.use(cors());
 app.use('/', authRouter);
 
+app.use('/', (req, res) => {
+    res.status(200).json({message: 'You reached to psychology books finder'})
+})
 
 
 export default app;
