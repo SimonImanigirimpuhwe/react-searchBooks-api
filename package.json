@@ -7,6 +7,9 @@
     "verbose": true,
     "testEnvironment": "node"
   },
+  "engines": {
+    "node": "12.16.1"
+  },
   "scripts": {
     "test": "jest --watchAll",
     "build": ".\\node_modules\\.bin\\babel src --out-dir dist",
