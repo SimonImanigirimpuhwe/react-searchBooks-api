@@ -2,13 +2,13 @@ import mongoose from 'mongoose';
 import config from '../../config/config';
 
 
-
 const options = {
     useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify: false,
     useNewUrlParser: true,
-}
+};
+
 const {
     db: { port, host, name}
 } = config;
