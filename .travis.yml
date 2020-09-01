@@ -3,8 +3,14 @@ sudo: false
 language: node_js
 
 node_js:
-  - node
+  - stable
 
+services:
+  mongodb
+
+before_script:
+  - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
+  
 script:
   npm run test:coveralls
 
