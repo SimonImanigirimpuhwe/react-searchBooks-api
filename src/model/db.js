@@ -14,10 +14,9 @@ const {
 } = config;
 
  export const url = `mongodb://${host}:${port}/${name}?authSource=admin` || config.db.database_url;
- export default () => {
-      mongoose
+ export default mongoose
         .connect(url, options)
         .then(() => console.log('MongoDB connected...'))
         .catch((err) => {throw new Error(err)})
-}
+
 
