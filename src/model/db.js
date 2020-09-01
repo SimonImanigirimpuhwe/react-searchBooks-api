@@ -19,4 +19,3 @@ const {
         .then(() => console.log('MongoDB connected...'))
         .catch((err) => {throw new Error(err)})
 
-console.log(url)
