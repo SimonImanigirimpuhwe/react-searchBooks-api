@@ -11,7 +11,7 @@
     "node": "12.16.1"
   },
   "scripts": {
-    "test": "jest --coverage --forceExit",
+    "test": "jest --coverage  --testTimeout=30000 --forceExit",
     "test:watch": " --watchAll",
     "test:coverage": "jest --coverage",
     "coveralls": "jest --coverage && coveralls < coverage/lcov.info",
