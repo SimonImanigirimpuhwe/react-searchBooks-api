@@ -29,6 +29,7 @@ describe('login', () => {
 
             expect(res.status).toBe(400)
             expect(res.body).toHaveProperty('error')
+            
             done();
         });
         it('should return 400 if password is invalid', async(done) => {
@@ -40,6 +41,7 @@ describe('login', () => {
 
             expect(res.status).toBe(400)
             expect(res.body).toHaveProperty('error')
+
             done();
         });
         it('should allow login if valid data passed', async(done) => {

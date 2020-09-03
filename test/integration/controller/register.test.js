@@ -19,7 +19,7 @@ describe('Register', () => {
     });
     
     describe('/register', () => {
-        it('should return 400 if user already registered', async() => {
+        it('should return 400 if user already registered', async(done) => {
             const user = {
                 name: 'yourFullName',
                 email: 'anyvalidemail@gmail.com',
@@ -31,9 +31,11 @@ describe('Register', () => {
 
             expect(res.status).toBe(400)
             expect(res.body).toHaveProperty('error')
+
+            done()
         });
         
-        it('should create new account', async() => {
+        it('should create new account', async(done) => {
             const user = {
                 name: 'yourFullName',
                 email: 'anyvalidemail@gmail.com',
@@ -45,6 +47,8 @@ describe('Register', () => {
             expect(res.status).toBe(201)
             expect(res.body).toHaveProperty('msg')
             expect(res.body).toHaveProperty('body')
+
+            done()
         })
     })
 })

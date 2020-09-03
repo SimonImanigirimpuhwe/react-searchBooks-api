@@ -14,7 +14,7 @@ describe('validation', () => {
             })
     });
 
-    it('should return 400 if there is a missing field', async() => {
+    it('should return 400 if there is a missing field', async(done) => {
         const user = {
             name:'yourFullName',
             password:'password'
@@ -24,9 +24,11 @@ describe('validation', () => {
         expect(res.status).toBe(400)
         expect(res.body).toHaveProperty('error')
         expect(res.body.error).toMatch(/required/)
+
+        done()
     });
 
-    it('should return 400 if name is less than 5 characters', async() => {
+    it('should return 400 if name is less than 5 characters', async(done) => {
         const user = {
             name:'1234',
             email:'validemail@gmail.com',
@@ -37,9 +39,11 @@ describe('validation', () => {
         expect(res.status).toBe(400);
         expect(res.body).toHaveProperty('error')
         expect(res.body.error).toMatch(/5 characters/)
+
+        done()
     });
     
-    it('should return 400 if name is greater than 50 characters', async() => {
+    it('should return 400 if name is greater than 50 characters', async(done) => {
         const longName = new Array(52).join('a');
         const user = {
             name: longName,
@@ -51,9 +55,11 @@ describe('validation', () => {
         expect(res.status).toBe(400)
         expect(res.body).toHaveProperty('error')
         expect(res.body.error).toMatch(/50 characters long/)
+
+        done()
     });
 
-    it('should return 400 if email is invalid', async() => {
+    it('should return 400 if email is invalid', async(done) => {
         const user = {
             name: 'yourFullName',
             email: 'invalidEmail.com',
@@ -64,9 +70,11 @@ describe('validation', () => {
         expect(res.status).toBe(400)
         expect(res.body).toHaveProperty('error')
         expect(res.body.error).toMatch(/valid/)
+
+        done()
     });
 
-    it('should return 400 if password is less than 6 characters', async() => {
+    it('should return 400 if password is less than 6 characters', async(done) => {
         const user = {
             name: 'youFullName',
             email:'validemail@gmail.com',
@@ -77,9 +85,11 @@ describe('validation', () => {
         expect(res.status).toBe(400)
         expect(res.body).toHaveProperty('error')
         expect(res.body.error).toMatch(/6 characters/)
+
+        done()
     });
 
-    it('should return 400 if password is greater than 100 characters', async() => {
+    it('should return 400 if password is greater than 100 characters', async(done) => {
         const longPass = new Array(102).join('a');
         const user = {
             name: 'youFullName',
@@ -91,6 +101,8 @@ describe('validation', () => {
         expect(res.status).toBe(400)
         expect(res.body).toHaveProperty('error')
         expect(res.body.error).toMatch(/100 characters/)
+
+        done()
     });
 
 });
