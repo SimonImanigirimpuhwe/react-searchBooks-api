@@ -44,7 +44,6 @@ const production = {
         secretKey: process.env.SECRET_KEY,
     },
     db: {
-        
         database_url: process.env.DATABASE_URL,
     }
 };

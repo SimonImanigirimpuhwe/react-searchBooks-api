@@ -21,9 +21,7 @@ var _config$db = _config["default"].db,
     port = _config$db.port,
     host = _config$db.host,
     name = _config$db.name;
-
-var url = "mongodb://".concat(host, ":").concat(port, "/").concat(name, "?authSource=admin") || _config["default"].db.database_url;
-
+var url = _config["default"].db.database_url || "mongodb://".concat(host, ":").concat(port, "/").concat(name, "?authSource=admin");
 exports.url = url;
 
 var _default = _mongoose["default"].connect(url, options).then(function () {
