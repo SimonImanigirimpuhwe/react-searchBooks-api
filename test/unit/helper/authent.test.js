@@ -16,8 +16,8 @@ describe('Generate jwt', () => {
         done()
     });
 
-    it('should throw error if payload is invalid', () => {
+    it('should throw error if payload is invalid', (done) => {
         expect(() => generateToken(null)).toThrow()
-
+        done()
     });
 });
