@@ -22,5 +22,6 @@ const {
         })
         .catch((err) => {
             console.log(err)
+            console.log(url)
         })
 
