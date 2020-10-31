@@ -11,10 +11,10 @@
     "node": "12.16.1"
   },
   "scripts": {
-    "test": "jest --coverage  --forceExit",
+    "test": "jest --coverage  --forceExit --runInBand --detectOpenHandles",
     "test:watch": " --watchAll",
     "test:coverage": "jest --coverage",
-    "coveralls": "jest --coverage && coveralls < coverage/lcov.info",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
     "build": ".\\node_modules\\.bin\\babel src --out-dir dist",
     "start": "node dist/index.js",
     "dev": "nodemon --exec babel-node src/index.js"

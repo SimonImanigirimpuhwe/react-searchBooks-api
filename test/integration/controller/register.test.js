@@ -20,35 +20,45 @@ describe('Register', () => {
     
     describe('/register', () => {
         it('should return 400 if user already registered', async(done) => {
-            const user = {
-                name: 'yourFullName',
-                email: 'anyvalidemail@gmail.com',
-                password:'password'
+            try {
+                const user = {
+                    name: 'yourFullName',
+                    email: 'anyvalidemail@gmail.com',
+                    password:'password'
+                }
+                const newUser = new User(user);
+                await newUser.save()
+                const res = await request(server).post('/register').send(user)
+    
+                expect(res.status).toBe(400)
+                expect(res.body).toHaveProperty('error')
+    
+                done()
+
+            } catch (err) {
+                done(err)
             }
-            const newUser = new User(user);
-            await newUser.save()
-            const res = await request(server).post('/register').send(user)
-
-            expect(res.status).toBe(400)
-            expect(res.body).toHaveProperty('error')
-
-            done()
         });
         
         it('should create new account', async(done) => {
-            const user = {
-                name: 'yourFullName',
-                email: 'anyvalidemail@gmail.com',
-                password:'password'
-            };
+            try {
+                const user = {
+                    name: 'yourFullName',
+                    email: 'anyvalidemail@gmail.com',
+                    password:'password'
+                };
+    
+                const res = await request(server).post('/register').send(user)
+    
+                expect(res.status).toBe(201)
+                expect(res.body).toHaveProperty('msg')
+                expect(res.body).toHaveProperty('body')
+    
+                done()
 
-            const res = await request(server).post('/register').send(user)
-
-            expect(res.status).toBe(201)
-            expect(res.body).toHaveProperty('msg')
-            expect(res.body).toHaveProperty('body')
-
-            done()
+            } catch (err) {
+                done(err)
+            }
         })
     })
 })
