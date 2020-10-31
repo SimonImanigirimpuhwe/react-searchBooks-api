@@ -3,21 +3,17 @@ sudo: false
 language: node_js
 
 node_js:
-  - 'stable'
+  - "stable"
 
 services:
   - mongodb
-  
+
 cache:
   directories:
-  - 'node_modules'
+    - "node_modules"
 
-before_script:
-  - sleep 15
-  - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
-  
 script:
-  - npm run test 
+  - npm run test
   - npm run coveralls
 
 notifications:

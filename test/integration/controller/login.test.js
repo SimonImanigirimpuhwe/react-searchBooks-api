@@ -21,42 +21,57 @@ describe('login', () => {
         })
     describe('/login', () => {
         it('should return 400 if email is invalid', async(done) => {
-            const user = {
-                email: 'wrong@gmail.com',
-                password: 'password'
-            };
-            const res = await request(server).post('/login').send(user);
+            try {
+                const user = {
+                    email: 'wrong@gmail.com',
+                    password: 'password'
+                };
+                const res = await request(server).post('/login').send(user);
+    
+                expect(res.status).toBe(400)
+                expect(res.body).toHaveProperty('error')
+                
+                done();
 
-            expect(res.status).toBe(400)
-            expect(res.body).toHaveProperty('error')
-            
-            done();
+            } catch (err) {
+                done(err)
+            }
         });
         it('should return 400 if password is invalid', async(done) => {
-            const user = {
-                email:'test@gmail.com',
-                password: 'wrongpassword'
-            };
-            const res = await request(server).post('/login').send(user);
+            try {
+                const user = {
+                    email:'test@gmail.com',
+                    password: 'wrongpassword'
+                };
+                const res = await request(server).post('/login').send(user);
+    
+                expect(res.status).toBe(400)
+                expect(res.body).toHaveProperty('error')
+    
+                done();
 
-            expect(res.status).toBe(400)
-            expect(res.body).toHaveProperty('error')
-
-            done();
+            } catch (err) {
+                done(err)
+            }
         });
         it('should allow login if valid data passed', async(done) => {
-            const user = {
-                email:'test@gmail.com',
-                password: 'password'
-            };
-            const res = await request(server).post('/login').send(user)
+            try {
+                const user = {
+                    email:'test@gmail.com',
+                    password: 'password'
+                };
+                const res = await request(server).post('/login').send(user)
+    
+                expect(res.status).toBe(200)
+                expect(res.body).toHaveProperty('msg')
+                expect(res.body).toHaveProperty('token')
+                expect(res.body.msg).toMatch(/logged/)
+    
+                done();
 
-            expect(res.status).toBe(200)
-            expect(res.body).toHaveProperty('msg')
-            expect(res.body).toHaveProperty('token')
-            expect(res.body.msg).toMatch(/logged/)
-
-            done();
+            } catch (err) {
+                done(err)
+            }
         })
     })
 })
